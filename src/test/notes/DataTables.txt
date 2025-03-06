@@ -1,0 +1,32 @@
+
+Scenario: Proposing appropriate special deals
+    Given Michael is a member
+    And his favorite flavors are:
+        | Banana |
+        | Apple  |
+
+@Given("his favorite flavors are:")
+    public void his_favorite_flavors_are(List<String> favorites){//..}
+
+    When the daily specials are:
+        | Title                         | Flavors               |
+        | 20% on all Banana Smoothies   | Banana                |
+        | 10% on all Berry Smoothies    | Strawberry, Blueberry |
+
+@When("the daily specials are:")
+    public void the_daily_specials_are(List<Map<String, String>> specials){//..}
+
+    Then Michael should see the following specials:
+        | Title                         | Flavors               |
+        | 20% on all Banana Smoothies   | Banana                |
+
+@Then("{} should see the following specials:")
+    public void the_daily_specials_are(String name, List<Map<String, String>> specials){//..}
+
+    And he should see the following calories counts:
+        | Basic Banana Smoothie         | 180 |
+        | Deluxe Banana Smoothie        | 240 |
+        | Banana and Ice cream smoothie | 350 |
+
+@Then("he should see the following calories counts:")
+    public void calories_counts_are(Map<String, Integer> calorieCounts){//..}

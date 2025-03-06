@@ -1,0 +1,41 @@
+Cucumber Expression is a newer more readable option for step definition
+
+----- Integer ------------------------------
+Scenario: Ordering many smoothies
+    Given I have ordered 9 smoothies
+
+@Given("I have ordered {int} smoothies")
+    public void iHaveOrdered(int count){ //.. }
+
+
+----- String ------------------------------
+Scenario: Ordering many smoothies
+    Given I have ordered "Banana Smoothie"
+
+@Given("I have ordered {string}")
+    public void iHaveOrdered(String smoothie){ //.. }
+
+
+----- Single Word ------------------------------
+Scenario: Ordering smoothie as a Gold member
+    Given I am a Gold member
+
+@Given("I am a {word} member")
+    public void iAmMember(String membership){ //.. }
+
+
+----- Float ------------------------------
+Scenario: Ordering a smoothie
+    Given a "Strawberry Smoothie" costs $4.99
+
+@Given("a {string} costs ${float}")
+    public void costOfSmoothie(String smoothie, float cost){ //.. }
+
+
+----- Anonymous ------------------------------
+Scenario: Ordering a smoothie
+    Given Michael is a member
+    When he orders a Triple Berry smoothie
+
+@Given("he orders a {} smoothie")
+    public void ordersASmoothie(String smoothie){ //.. }

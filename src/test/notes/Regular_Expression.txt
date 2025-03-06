@@ -1,0 +1,43 @@
+Regular Expressions in Cucumber:
+    - Identify which parts of scenarios should be passed a parameters
+    - More powerful than Cucumber Expressions
+    - Harder to read than Cucumber Expressions
+    - Widely supported on older versions of cucumber and on every IDE
+
+
+Simpe Regular Expressions:
+    ^           The start of the string
+    $           The end of the string
+    (.*)        Matches anything (including nothing)
+    (.+)        Matches at least one of anything
+
+    (\\d+)      A sequence of digits
+    (\\w+)      A sequence of letters or digits
+
+
+Scenario: Ordering smoothie
+    Given I ordered 9 Banana smoothies
+
+@Given("^I ordered (\\d+) (.*) smoothies$")
+    public void orderingSmoothies(int amount, String smoothie){ //.. }
+
+
+Equivalent Expressions:
+
+    "Given I ordered a smoothie"
+    "Given I have ordered a smoothie"
+    "Given I have ordered an apple smoothie"
+
+
+    s?he                    Optional character: matches "she" or "he"
+    an?                     Matches "a" or "an"
+    (?:order|have ordered)  Matches "orders" or "has ordered" but does not capture it as a parameter
+
+
+Scenario: Michael orders smoothie
+    Given Michael is a member
+    When he orders 2 Green Goodness smoothies
+    Then the total cost should be $10.12
+
+@Given("^s?he (?:orders|has ordered) (//+d) (.*) smoothies?$")
+    public void orderingSmoothie(String name, int count, String smoothie){ //.. }
