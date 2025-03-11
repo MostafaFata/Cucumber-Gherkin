@@ -6,13 +6,14 @@ Regular Expressions in Cucumber:
 
 
 Simpe Regular Expressions:
-    ^           The start of the string
-    $           The end of the string
-    (.*)        Matches anything (including nothing)
-    (.+)        Matches at least one of anything
+    ^            → The start of the string
+    $            → The end of the string
+    (.*)         → Matches anything (including nothing)
+    (.+)         → Matches at least one of anything
 
-    (\\d+)      A sequence of digits
-    (\\w+)      A sequence of letters or digits
+    (\\d+)       → A sequence of digits
+    (\\w+)       → A sequence of letters or digits
+    [A-Za-z]+    → Matches only letters (uppercase/lowercase)
 
 
 Scenario: Ordering smoothie
@@ -29,9 +30,9 @@ Equivalent Expressions:
     "Given I have ordered an apple smoothie"
 
 
-    s?he                    Optional character: matches "she" or "he"
-    an?                     Matches "a" or "an"
-    (?:order|have ordered)  Matches "orders" or "has ordered" but does not capture it as a parameter
+    s?he                     → Optional character: matches "she" or "he"
+    an?                      → Matches "a" or "an"
+    (?:order|have ordered)   → Matches "orders" or "has ordered" but does not capture it as a parameter
 
 
 Scenario: Michael orders smoothie
@@ -41,3 +42,36 @@ Scenario: Michael orders smoothie
 
 @Given("^s?he (?:orders|has ordered) (//+d) (.*) smoothies?$")
     public void orderingSmoothie(String name, int count, String smoothie){ //.. }
+
+
+
+    \"([^\"]*)\"        → Matches any text inside quotes
+    "(.*?)"             → Matches text inside double quotes
+
+Scenario: Successful Login
+    Given user enters username "michael" and password "xyz123"
+
+@Given("^user enters username \"([^\"*])\" and password \"([^\"*])\"$")
+    public void login(String username, String password){ //.. }
+
+
+Scenario: Check optional middle name
+  Given The user's full name is "Thomas Kraemer"
+  Given The user's full name is "Thomas Robert Kraemer"
+
+@Given("^The user's full name is \"([A-Za-z]+)(?: ([A-Za-z]+))? ([A-Za-z]+)\"$")
+    public void getFullname(String firstname, String middlename, String lastname){//..}
+
+    ([A-Za-z]+) → First name (required)
+    (?: ([A-Za-z]+))? → Middle name (optional, ? makes it optional)
+    ([A-Za-z]+) → Last name (required)
+
+
+Scenario: Validate price
+    Given The product costs $19.99
+
+@Given("^The product costs \\$(\\d+\\.\\d{2})$")
+    public void productPrice(double price){//..}
+
+    \\$ → Escapes the dollar sign $
+    (\\d+\\.\\d{2}) → Matches a number with two decimal places
