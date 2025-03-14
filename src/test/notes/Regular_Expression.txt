@@ -5,7 +5,7 @@ Regular Expressions in Cucumber:
     - Widely supported on older versions of cucumber and on every IDE
 
 
-Simpe Regular Expressions:
+Simple Regular Expressions:
     ^            → The start of the string
     $            → The end of the string
     (.*)         → Matches anything (including nothing)
