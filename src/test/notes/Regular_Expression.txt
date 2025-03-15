@@ -62,9 +62,9 @@ Scenario: Check optional middle name
 @Given("^The user's full name is \"([A-Za-z]+)(?: ([A-Za-z]+))? ([A-Za-z]+)\"$")
     public void getFullname(String firstname, String middlename, String lastname){//..}
 
-    ([A-Za-z]+) → First name (required)
-    (?: ([A-Za-z]+))? → Middle name (optional, ? makes it optional)
-    ([A-Za-z]+) → Last name (required)
+    ([A-Za-z]+) → Firstname (required)
+    (?: ([A-Za-z]+))? → Middlename (optional, ? makes it optional)
+    ([A-Za-z]+) → Lastname (required)
 
 
 Scenario: Validate price
