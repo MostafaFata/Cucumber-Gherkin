@@ -68,7 +68,7 @@ Scenario: Check optional middle name
 
 
 Scenario: Validate price
-    Given The price of product is 10.99
+    Given The product costs 20.13
 
 @Given("^The product costs \\$(\\d+\\.\\d{2})$")
     public void productPrice(double price){//..}
